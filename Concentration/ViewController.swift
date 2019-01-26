@@ -4,16 +4,28 @@ class ViewController: UIViewController
 {
     lazy var game = Concentration(numberOfPairsOfCards: cardButtons.count / 2)
     
+    override func viewDidLoad() {
+       
+        super.viewDidLoad()
+        //overrider men lägger till något som inte fanns i klassen innan
+        for card in cardButtons {
+            card.layer.cornerRadius = 10
+            card.layer.borderColor = UIColor.black.cgColor
+            card.layer.borderWidth = 2
+            //card.backgroundColor = CGColor(#colorLiteral(red: 0.5058823824, green:
+            //0.3372549117, blue: 0.06666667014, alpha: 1))
+        
+        }
+        
+    }
+    
     var flipCount = 0 {
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
         }
     }
     @IBOutlet weak var flipCountLabel: UILabel!
-    
     @IBOutlet var cardButtons: [UIButton]!
-    
- 
     
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
@@ -38,9 +50,6 @@ class ViewController: UIViewController
             }
         }
     }
-    
-    
-    
     var emojiChoices = ["🦄","👻","🎃","🐛"]
     
     var emoji = Dictionary<Int, String>()
@@ -60,8 +69,5 @@ class ViewController: UIViewController
             return "?"
         }
     }
-    
-        
-    
 }
 
